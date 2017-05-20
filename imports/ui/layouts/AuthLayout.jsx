@@ -5,12 +5,12 @@ import { Grid } from 'react-flexbox-grid';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
-import PublicNavigation from '../components/Navigations/PublicNavigation';
+import AuthNavigation from '../components/Navigations/AuthNavigation';
 
 
-const MainLayout = ({ children }) => (
+const AuthLayout = ({children}) => (
   <div className="main-container">
-    <PublicNavigation />
+    <AuthNavigation />
 
     <Grid fluid>
       {children}
@@ -19,9 +19,9 @@ const MainLayout = ({ children }) => (
 );
 
 
-MainLayout.propTypes = {
+AuthLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
 
-export default MainLayout;
+export default AuthLayout;

@@ -4,8 +4,6 @@ import Toolbar from 'react-md/lib/Toolbars';
 
 import NavButton from './NavButton';
 
-import './PublicNavigation.less';
-
 
 const navButton = (
   <NavButton icon iconName="thumbs_up_down" to="/"/>

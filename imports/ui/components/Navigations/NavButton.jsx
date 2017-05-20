@@ -19,6 +19,7 @@ class NavButton extends React.Component {
       icon,
       iconName,
       className,
+      onClick,
     } = this.props;
 
     return (
@@ -30,6 +31,7 @@ class NavButton extends React.Component {
           label={label}
           type="button"
           className={className}
+          onClick={onClick}
         >{iconName}</Button>
       </Link>
     );
@@ -38,24 +40,26 @@ class NavButton extends React.Component {
 
 
 NavButton.defaultProps = {
+  to: '/',
   flat: false,
   raised: false,
   icon: false,
   iconName: '',
   label: '',
   className: '',
+  onClick: () => true,
 };
 
 
 NavButton.propTypes = {
-  to: PropTypes.string.isRequired,
-
+  to: PropTypes.string,
   className: PropTypes.string,
   label: PropTypes.string,
   flat: PropTypes.bool,
   raised: PropTypes.bool,
   icon: PropTypes.bool,
   iconName: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 
