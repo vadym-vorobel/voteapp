@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Grid } from 'react-flexbox-grid';
+
 import PublicNavigation from '../components/PublicNavigation';
 
 
@@ -14,7 +16,9 @@ class MainLayout extends React.Component {
       <div className="main-container">
         <PublicNavigation />
 
-        {this.props.children}
+        <Grid fluid>
+          {this.props.children}
+        </Grid>
       </div>
     );
   }
