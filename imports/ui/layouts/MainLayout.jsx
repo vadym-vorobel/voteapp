@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'react-s-alert';
 
 import { Grid } from 'react-flexbox-grid';
 
 import PublicNavigation from '../components/PublicNavigation';
 
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/genie.css';
 
 class MainLayout extends React.Component {
   constructor(props) {
@@ -19,6 +22,8 @@ class MainLayout extends React.Component {
         <Grid fluid>
           {this.props.children}
         </Grid>
+
+        <Alert />
       </div>
     );
   }
