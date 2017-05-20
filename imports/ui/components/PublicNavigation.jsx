@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Toolbar, FontIcon } from 'react-md';
+import Toolbar from 'react-md/lib/Toolbars';
 
 import NavButton from './NavButton';
 

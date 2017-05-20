@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Link } from 'react-router';
-import { Button } from 'react-md';
+import Link from 'react-router/lib/Link';
+import Button from 'react-md/lib/Buttons';
 
 
 class NavButton extends React.Component {

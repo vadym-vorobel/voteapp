@@ -1,5 +1,7 @@
 import React from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+import browserHistory from 'react-router/lib/browserHistory';
+import Router from 'react-router/lib/Router';
+import Route from 'react-router/lib/Route';
 
 import MainLayout from '../../ui/layouts/MainLayout';
 
