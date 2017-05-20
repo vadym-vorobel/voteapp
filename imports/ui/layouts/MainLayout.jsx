@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Layout } from 'react-toolbox/lib/layout';
-
 import PublicNavigation from '../components/PublicNavigation';
 
 
@@ -13,11 +11,11 @@ class MainLayout extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <div className="main-container">
         <PublicNavigation />
 
         {this.props.children}
-      </Layout>
+      </div>
     );
   }
 }

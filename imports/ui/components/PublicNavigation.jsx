@@ -1,17 +1,29 @@
 import React from 'react';
 
-import { AppBar } from 'react-toolbox/lib/app_bar';
-import { Navigation } from 'react-toolbox/lib/navigation';
-import { Link } from 'react-toolbox/lib/link';
+import { Toolbar, FontIcon } from 'react-md';
+
+import NavButton from './NavButton';
+
+import './PublicNavigation.less';
+
+
+const navButton = (
+  <NavButton icon iconName="thumbs_up_down" to="/"/>
+);
+
+const actions = [
+  <NavButton flat to="/sign-in" label="Sign In" />,
+  <NavButton flat to="/sign-up" label="Sign Up" />
+];
 
 
 const PublicNavigation = () => (
-  <AppBar title='React Toolbox' leftIcon='menu'>
-    <Navigation type='horizontal'>
-      <Link href='http://' label='Inbox' icon='inbox' />
-      <Link href='http://' active label='Profile' icon='person' />
-    </Navigation>
-  </AppBar>
+  <Toolbar
+    colored
+    title="Vote App"
+    nav={navButton}
+    actions={actions}
+  />
 );
 
 
