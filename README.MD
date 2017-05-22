@@ -12,9 +12,9 @@ An example MeteorJS project for TernopilJS school.
 
 - Meteor
 - React
-- ReactRouter v3.0.5
-- react-md - CSS framework
-- react-flexbox-grid - grid system for React
+- [ReactRouter v3.0.5](https://github.com/ReactTraining/react-router/tree/v3/docs)
+- [react-md](https://react-md.mlaursen.com/) - CSS framework
+- [react-flexbox-grid](https://roylee0704.github.io/react-flexbox-grid/) - grid system for React
 - eslint
 
 ### Scripts
