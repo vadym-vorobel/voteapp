@@ -1,5 +1,5 @@
 {
-  "name": "voteapp-clone",
+  "name": "voteapp",
   "private": true,
   "scripts": {
     "start": "meteor run",
@@ -92,7 +92,10 @@
       ],
       "react/forbid-prop-types": "off",
       "jsx-a11y/no-static-element-interactions": "off",
-      "import/extensions": ["off", "never"]
+      "import/extensions": [
+        "off",
+        "never"
+      ]
     },
     "settings": {
       "import/resolver": "meteor"
