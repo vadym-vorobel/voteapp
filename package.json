@@ -3,8 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "lint": "eslint .",
-    "pretest": "npm run lint --silent"
+    "lint": "eslint ."
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
@@ -31,6 +30,72 @@
     "eslint-plugin-react": "^7.0.1"
   },
   "eslintConfig": {
-    "extends": "@meteorjs/eslint-config-meteor"
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "allowImportExportEverywhere": true
+    },
+    "plugins": [
+      "meteor"
+    ],
+    "extends": [
+      "airbnb",
+      "plugin:meteor/recommended"
+    ],
+    "rules": {
+      "import/no-extraneous-dependencies": "off",
+      "import/prefer-default-export": "off",
+      "no-underscore-dangle": "off",
+      "class-methods-use-this": "off",
+      "arrow-parens": "off",
+      "no-mixed-operators": "off",
+      "import/imports-first": "off",
+      "no-useless-escape": "off",
+      "no-extra-boolean-cast": "off",
+      "jsx-a11y/href-no-hash": "off",
+      "react/no-string-refs": "off",
+      "no-prototype-builtins": "off",
+      "react/no-unused-prop-types": "off",
+      "jsx-a11y/label-has-for": "off",
+      "no-plusplus": "off",
+      "no-lonely-if": "off",
+      "react/self-closing-comp": "off",
+      "object-shorthand": [
+        "error",
+        "always",
+        {
+          "avoidQuotes": false
+        }
+      ],
+      "meteor/eventmap-params": [
+        "error",
+        {
+          "eventParamName": "event",
+          "templateInstanceParamName": "instance"
+        }
+      ],
+      "meteor/template-names": [
+        "off"
+      ],
+      "react/jsx-filename-extension": [
+        1,
+        {
+          "extensions": [
+            ".js",
+            ".jsx"
+          ]
+        }
+      ],
+      "react/forbid-prop-types": "off",
+      "jsx-a11y/no-static-element-interactions": "off",
+      "import/extensions": ["off", "never"]
+    },
+    "settings": {
+      "import/resolver": "meteor"
+    }
   }
 }

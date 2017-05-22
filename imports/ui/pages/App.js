@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'react-s-alert';
 
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/genie.css';
+
 import { Meteor } from 'meteor/meteor';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
 import Spinner from '../components/Spinner';
-
-import 'react-s-alert/dist/s-alert-default.css';
-import 'react-s-alert/dist/s-alert-css-effects/genie.css';
 
 
 const ALERTS_LIMIT = 3;

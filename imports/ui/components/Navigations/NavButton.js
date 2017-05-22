@@ -5,38 +5,19 @@ import Link from 'react-router/lib/Link';
 import Button from 'react-md/lib/Buttons';
 
 
-class NavButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {
-      to,
-      label,
-      flat,
-      raised,
-      icon,
-      iconName,
-      className,
-      onClick,
-    } = this.props;
-
-    return (
-      <Link to={to} style={{ color: '#fff' }}>
-        <Button
-          flat={flat}
-          raised={raised}
-          icon={icon}
-          label={label}
-          type="button"
-          className={className}
-          onClick={onClick}
-        >{iconName}</Button>
-      </Link>
-    );
-  }
-}
+const NavButton = ({ to, flat, raised, icon, iconName, label, className, onClick }) => (
+  <Link to={to} style={{ color: '#fff' }}>
+    <Button
+      flat={flat}
+      raised={raised}
+      icon={icon}
+      label={label}
+      type="button"
+      className={className}
+      onClick={onClick}
+    >{iconName}</Button>
+  </Link>
+);
 
 
 NavButton.defaultProps = {

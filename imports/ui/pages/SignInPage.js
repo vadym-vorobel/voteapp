@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { Accounts } from 'meteor/accounts-base';
-
-import { handleResult } from '../../utils/handle-result';
+import { Meteor } from 'meteor/meteor';
 
 import { Row, Col } from 'react-flexbox-grid';
 
@@ -10,11 +8,13 @@ import TextField from 'react-md/lib/TextFields';
 import Button from 'react-md/lib/Buttons';
 import FocusContainer from 'react-md/lib/Helpers/FocusContainer';
 
+import { handleResult } from '../../utils/handle-result';
+
 
 const getFieldValue = form => field => form[field].value || '';
 
 
-class SignUpPage extends React.Component {
+class SignInPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -27,16 +27,15 @@ class SignUpPage extends React.Component {
     const getFormFieldValue = getFieldValue(event.target);
 
     const email = getFormFieldValue('email');
-    const username = getFormFieldValue('username');
     const password = getFormFieldValue('password');
 
-    Accounts.createUser({ username, email, password }, handleResult());
+    Meteor.loginWithPassword({ email }, password, handleResult());
   }
 
   render() {
     return (
       <div>
-        <h1 className="text-center m-t-10">Sign Up</h1>
+        <h1 className="text-center m-t-10">Sign In</h1>
 
         <Row>
           <Col xs={12} md={6} mdOffset={3} sm={8} smOffset={2}>
@@ -48,16 +47,9 @@ class SignUpPage extends React.Component {
             >
               <TextField required id="email" type="email" label="Email" />
 
-              <TextField required id="username" label="Username" />
-
               <TextField required id="password" label="Password" type="password" />
 
-              <Button
-                raised
-                primary
-                type="submit"
-                label="Submit"
-              />
+              <Button raised primary type="submit" label="Submit" />
             </FocusContainer>
           </Col>
         </Row>
@@ -67,4 +59,4 @@ class SignUpPage extends React.Component {
 }
 
 
-export default SignUpPage;
+export default SignInPage;

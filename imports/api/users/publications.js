@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
 
-Meteor.publish('users.current', function () {
+Meteor.publish('users.current', function usersCurrent() {
   if (!this.userId) {
     return this.ready();
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+/* global document */
 import { render } from 'react-dom';
 
 import { Meteor } from 'meteor/meteor';

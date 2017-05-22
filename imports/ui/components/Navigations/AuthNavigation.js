@@ -8,7 +8,7 @@ import NavButton from './NavButton';
 
 
 const navButton = (
-  <NavButton icon iconName="thumbs_up_down" to="/my-polls"/>
+  <NavButton icon iconName="thumbs_up_down" to="/my-polls" />
 );
 
 
@@ -16,7 +16,7 @@ const logout = () => Meteor.logout();
 
 const actions = [
   <NavButton flat to="/my-polls" label="My Polls" />,
-  <NavButton flat label="Logout" onClick={logout}/>,
+  <NavButton flat label="Logout" onClick={logout} />,
 ];
 
 

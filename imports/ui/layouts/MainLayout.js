@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import { Grid } from 'react-flexbox-grid';
 
-import { createContainer } from 'meteor/react-meteor-data';
-
 import PublicNavigation from '../components/Navigations/PublicNavigation';
 
 
