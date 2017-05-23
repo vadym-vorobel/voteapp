@@ -7,6 +7,8 @@ import MainLayout from '../../ui/layouts/MainLayout';
 import AuthLayout from '../../ui/layouts/AuthLayout';
 
 import App from '../../ui/pages/App';
+import NotFoundPage from '../../ui/pages/NotFoundPage';
+
 import HomePage from '../../ui/pages/HomePage';
 import SignInPage from '../../ui/pages/SignInPage';
 import SignUpPage from '../../ui/pages/SignUpPage';
@@ -30,6 +32,8 @@ export const renderRoutes = () => (
       <Route component={AuthLayout}>
         <Route path="/my-polls" component={MyPolls} />
       </Route>
+
+      <Route path="*" component={NotFoundPage} />
     </Route>
   </Router>
 );
