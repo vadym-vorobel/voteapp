@@ -13,7 +13,7 @@ import HomePage from '../../ui/pages/HomePage';
 import SignInPage from '../../ui/pages/SignInPage';
 import SignUpPage from '../../ui/pages/SignUpPage';
 
-import MyPolls from '../../ui/pages/MyPolls';
+import MyPollsPage from '../../ui/pages/MyPollsPage';
 
 
 const publicRoutes = ['/', '/sign-in', 'sign-up'];
@@ -30,7 +30,7 @@ export const renderRoutes = () => (
       </Route>
 
       <Route component={AuthLayout}>
-        <Route path="/my-polls" component={MyPolls} />
+        <Route path="/my-polls" component={MyPollsPage} />
       </Route>
 
       <Route path="*" component={NotFoundPage} />
