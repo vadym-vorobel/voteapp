@@ -1,10 +1,10 @@
 import React from 'react';
 
-import MyPolls from '../components/MyPolls/MyPolls';
+import MyPollsContainer from '../components/MyPolls/MyPollsContainer';
 
 
 const MyPollsPage = () => (
-  <MyPolls />
+  <MyPollsContainer />
 );
 
 

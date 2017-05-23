@@ -18,33 +18,45 @@ const getHumanizeDuration = date => moment.duration(new Date() - date).humanize(
 const getTimeAgo = date => `${getHumanizeDuration(date)} ago`;
 
 
-const PollItem = ({ poll }) => (
-  <Col xs={12} className="m-b-20">
-    <Card>
-      <CardTitle
-        title={poll.title}
-        subtitle={getTimeAgo(poll.createdAt)}
-      />
+const PollItem = ({ poll, onPublicityToggle }) => {
+  const onPublicityToggleHandler = isChecked => onPublicityToggle(isChecked, poll._id);
 
-      <CardActions>
-        <Button flat label="Open" />
-        <Button flat label="Edit" />
-
-        <Checkbox
-          id={getCheckboxId(poll)}
-          name={getCheckboxId(poll)}
-          label="public"
-          defaultChecked={poll.isPublic}
-          checkedIconChildren="check"
+  return (
+    <Col xs={12} className="m-b-20">
+      <Card>
+        <CardTitle
+          title={poll.title}
+          subtitle={getTimeAgo(poll.createdAt)}
         />
-      </CardActions>
-    </Card>
-  </Col>
-);
+
+        <CardActions>
+          <Button flat label="Open" />
+          <Button flat label="Edit" />
+
+          <Checkbox
+            id={getCheckboxId(poll)}
+            name={getCheckboxId(poll)}
+            label="public"
+            checked={poll.isPublic}
+            checkedIconChildren="check"
+            onChange={onPublicityToggleHandler}
+          />
+        </CardActions>
+      </Card>
+    </Col>
+  );
+}
+
+
+PollItem.defaultProps = {
+  onPublicityToggle: () => true,
+};
 
 
 PollItem.propTypes = {
   poll: PropTypes.object.isRequired,
+
+  onPublicityToggle: PropTypes.func,
 };
 
 

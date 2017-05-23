@@ -8,7 +8,7 @@ import TextField from 'react-md/lib/TextFields';
 import Button from 'react-md/lib/Buttons';
 import FocusContainer from 'react-md/lib/Helpers/FocusContainer';
 
-import { handleResult } from '../../utils/handle-result';
+import { handleResult } from '../../utils/client-utils';
 
 
 const getFieldValue = form => field => form[field].value || '';
