@@ -6,11 +6,18 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Polls } from './polls';
 
 
+// allowed to update fields
+const PartsToUpdate = new SimpleSchema({
+  title: { type: String, optional: true },
+  isPublic: { type: Boolean, optional: true },
+});
+
+
 export const updatePoll = new ValidatedMethod({
   name: 'Polls.update',
   validate: new SimpleSchema({
     _id: { type: String },
-    partToUpdate: { type: Object, blackbox: true },
+    partToUpdate: { type: PartsToUpdate },
   }).validator(),
 
   run({ _id, partToUpdate }) {
