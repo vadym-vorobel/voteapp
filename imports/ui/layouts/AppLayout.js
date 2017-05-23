@@ -9,7 +9,11 @@ import { Meteor } from 'meteor/meteor';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
+import { Grid } from 'react-flexbox-grid';
+
 import Spinner from '../components/Spinner';
+import AuthNavigation from '../components/Navigations/AuthNavigation';
+import PublicNavigation from '../components/Navigations/PublicNavigation';
 
 
 const ALERTS_LIMIT = 3;
@@ -26,7 +30,7 @@ const redirectTo = (pathname, router) => {
 };
 
 
-class App extends React.Component {
+class AppLayout extends React.Component {
   componentDidMount() {
     this.checkAuthRoutes(this.props);
   }
@@ -53,13 +57,15 @@ class App extends React.Component {
   }
 
   render() {
-    const { loading, children } = this.props;
+    const { loading, children, isLoggedIn } = this.props;
 
     return (
       <Spinner loading={loading}>
-        <div className="app-wrapper">
+        {isLoggedIn ? <AuthNavigation /> : <PublicNavigation />}
+
+        <Grid fluid className="m-t-20">
           {!loading && children}
-        </div>
+        </Grid>
 
         <Alert stack={{ limit: ALERTS_LIMIT }} />
       </Spinner>
@@ -68,13 +74,14 @@ class App extends React.Component {
 }
 
 
-App.propTypes = {
+AppLayout.propTypes = {
   children: PropTypes.node.isRequired,
   loading: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 
-App.contextProps = {
+AppLayout.contextProps = {
   router: PropTypes.func.isRequired,
 };
 
@@ -86,4 +93,4 @@ export default createContainer(() => {
     loading: !subsHandler.ready() || Meteor.loggingIn(),
     isLoggedIn: !!Meteor.user(),
   };
-}, App);
+}, AppLayout);
