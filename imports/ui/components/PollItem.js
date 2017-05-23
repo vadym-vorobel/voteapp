@@ -45,7 +45,7 @@ const PollItem = ({ poll, onPublicityToggle }) => {
       </Card>
     </Col>
   );
-}
+};
 
 
 PollItem.defaultProps = {
