@@ -2,7 +2,7 @@
   "name": "voteapp",
   "private": true,
   "scripts": {
-    "start": "meteor run",
+    "start": "meteor --settings settings.json",
     "lint": "eslint ."
   },
   "dependencies": {
