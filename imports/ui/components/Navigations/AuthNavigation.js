@@ -16,6 +16,7 @@ const logout = () => Meteor.logout();
 
 const actions = [
   <NavButton flat to="/my-polls" label="My Polls" />,
+  <NavButton flat to="/public-polls" label="Public Polls" />,
   <NavButton flat label="Logout" onClick={logout} />,
 ];
 
