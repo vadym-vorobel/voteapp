@@ -2,16 +2,16 @@ import React from 'react';
 
 import Toolbar from 'react-md/lib/Toolbars';
 
-import NavButton from './NavButton';
+import LinkButton from '../LinkButton';
 
 
 const navButton = (
-  <NavButton icon iconName="thumbs_up_down" to="/" />
+  <LinkButton icon to="/">thumbs_up_down</LinkButton>
 );
 
 const actions = [
-  <NavButton flat to="/sign-in" label="Sign In" />,
-  <NavButton flat to="/sign-up" label="Sign Up" />,
+  <LinkButton flat to="/sign-in" label="Sign In" />,
+  <LinkButton flat to="/sign-up" label="Sign Up" />,
 ];
 
 
