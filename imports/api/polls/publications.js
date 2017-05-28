@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
-import { check, Match } from 'meteor/check';
+import { check } from 'meteor/check';
 
 import { Polls } from './polls';
+import { Questions } from '../questions/questions';
+import { Answers } from '../answers/answers';
 
 
 Meteor.publish('polls.currentUser', function pollsCurrentUser() {
@@ -39,8 +41,16 @@ Meteor.publishComposite('polls.details', function pollsDetails(pollId) {
     children: [
       {
         find(poll) {
-          // publish questions and answers here
+          return Questions.find({ pollId: poll._id });
         },
+
+        children: [
+          {
+            find(question) {
+              return Answers.find({ questionId: question._id });
+            },
+          },
+        ],
       },
     ],
   };

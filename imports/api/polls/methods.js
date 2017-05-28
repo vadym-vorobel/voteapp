@@ -5,6 +5,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import { Polls } from './polls';
 import { PollsSchema } from './PollsSchema';
+import { Questions } from '../questions/questions';
 
 
 export const createPoll = new ValidatedMethod({
@@ -42,12 +43,33 @@ export const updatePoll = new ValidatedMethod({
   }).validator(),
 
   run({ _id, partToUpdate }) {
-    const poll = Polls.findOne({ _id, createdBy: Meteor.userId() });
+    const poll = Polls.findOne({ _id, createdBy: this.userId });
 
     if (!poll) {
       throw new Meteor.Error('You can\'t edit this poll');
     }
 
     return Polls.update({ _id }, { $set: partToUpdate });
+  },
+});
+
+export const removePoll = new ValidatedMethod({
+  name: 'Polls.remove',
+  validate: new SimpleSchema({
+    _id: { type: String },
+  }).validator(),
+
+  run({ _id }) {
+    const poll = Polls.findOne({ _id, createdBy: this.userId });
+
+    if (!poll) {
+      throw new Meteor.Error('You can\'t remove this poll');
+    }
+
+    Questions.find({ pollId: _id }).forEach((question) => {
+      Meteor.call('Questions.remove', { _id: question._id });
+    });
+
+    return Polls.remove({ _id });
   },
 });

@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Row from 'react-flexbox-grid/lib/components/Row';
+import Col from 'react-flexbox-grid/lib/components/Col';
 
-
-import { updatePoll } from '../../../api/polls/methods';
+import { updatePoll, removePoll } from '../../../api/polls/methods';
 import { handleResult } from '../../../utils/client-utils';
 
 import Spinner from '../Spinner';
 import EditPollInfo from './EditPollInfo';
+import EditQuestionsList from './EditQuestionsList';
+import LinkButton from '../LinkButton';
 
 
 class EditPoll extends React.Component {
@@ -16,6 +18,13 @@ class EditPoll extends React.Component {
     super(props);
 
     this.updatePoll = this.updatePoll.bind(this);
+    this.onPollRemove = this.onPollRemove.bind(this);
+  }
+
+  onPollRemove() {
+    removePoll.call({ _id: this.props.pollId }, handleResult(() => {
+      this.context.router.push('my-polls');
+    }));
   }
 
   updatePoll(field) {
@@ -30,13 +39,23 @@ class EditPoll extends React.Component {
   }
 
   render() {
-    const { loading, poll } = this.props;
+    const { loading, poll, pollId, questions } = this.props;
 
     return (
       <Spinner loading={loading}>
         {poll && (
           <Row>
-            <EditPollInfo poll={poll} onPollUpdate={this.updatePoll} />
+            <Col xs={12} md={6} sm={8} mdOffset={3} smOffset={2}>
+              <EditPollInfo
+                poll={poll}
+                onPollUpdate={this.updatePoll}
+                onPollRemove={this.onPollRemove}
+              />
+
+              <EditQuestionsList pollId={pollId} questions={questions} />
+            </Col>
+
+            <LinkButton fixed floating primary>remove_red_eye</LinkButton>
           </Row>
         )}
       </Spinner>
@@ -45,12 +64,23 @@ class EditPoll extends React.Component {
 }
 
 
+EditPoll.defaultProps = {
+  poll: {},
+};
+
+
 EditPoll.propTypes = {
   pollId: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
   onUnmount: PropTypes.func.isRequired,
+  questions: PropTypes.array.isRequired,
 
   poll: PropTypes.object,
+};
+
+
+EditPoll.contextTypes = {
+  router: PropTypes.object.isRequired,
 };
 
 
