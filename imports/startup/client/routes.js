@@ -14,6 +14,7 @@ import NotFoundPage from '../../ui/pages/NotFoundPage';
 
 import MyPollsPage from '../../ui/pages/MyPollsPage';
 import PublicPollsPage from '../../ui/pages/PublicPollsPage';
+import EditPollPage from '../../ui/pages/EditPollPage';
 
 
 const publicRoutes = ['/', '/sign-in', 'sign-up'];
@@ -30,6 +31,8 @@ export const renderRoutes = () => (
 
       <Route path="my-polls" component={MyPollsPage} />
       <Route path="public-polls" component={PublicPollsPage} />
+
+      <Route path="edit-poll/:_id" component={EditPollPage} />
 
       <Redirect path="*" to="not-found" />
     </Route>

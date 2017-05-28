@@ -4,12 +4,33 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 import { Polls } from './polls';
+import { PollsSchema } from './PollsSchema';
 
 
-// allowed to update fields
-const PartsToUpdate = new SimpleSchema({
-  title: { type: String, optional: true },
-  isPublic: { type: Boolean, optional: true },
+export const createPoll = new ValidatedMethod({
+  name: 'Polls.create',
+  validate: new SimpleSchema({
+    poll: { type: PollsSchema },
+  }).validator(),
+
+  run({ poll }) {
+    const { userId } = this;
+
+    if (!userId) {
+      throw new Meteor.Error('You can\'t add a new poll');
+    }
+
+    const defaultPoll = {
+      createdBy: userId,
+      createdAt: new Date(),
+      title: '',
+      isPublic: false,
+    };
+
+    const pollToAdd = { ...defaultPoll, ...poll };
+
+    return Polls.insert(pollToAdd);
+  },
 });
 
 
@@ -17,7 +38,7 @@ export const updatePoll = new ValidatedMethod({
   name: 'Polls.update',
   validate: new SimpleSchema({
     _id: { type: String },
-    partToUpdate: { type: PartsToUpdate },
+    partToUpdate: { type: PollsSchema.pick(['title', 'isPublic']) },
   }).validator(),
 
   run({ _id, partToUpdate }) {

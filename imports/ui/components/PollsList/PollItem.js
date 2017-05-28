@@ -12,6 +12,8 @@ import CardActions from 'react-md/lib/Cards/CardActions';
 import Button from 'react-md/lib/Buttons/Button';
 import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
 
+import LinkButton from '../LinkButton';
+
 
 const getCheckboxId = poll => `checkbox-${poll._id}`;
 
@@ -36,7 +38,13 @@ const PollItem = ({ poll, onPublicityToggle }) => {
         <CardActions>
           <Button flat label="Open" />
 
-          {canEditPoll && <Button flat label="Edit" />}
+          {canEditPoll && (
+            <LinkButton
+              flat
+              to={`edit-poll/${poll._id}`}
+              label="Edit"
+            />
+          )}
 
           {canEditPoll && (
             <Checkbox

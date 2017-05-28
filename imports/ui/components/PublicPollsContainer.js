@@ -12,7 +12,7 @@ export default createContainer(() => {
 
   return {
     loading: !subsHandler.ready(),
-    polls: Polls.find().fetch(),
+    polls: Polls.find({}, { sort: { createdAt: -1 } }).fetch(),
     onUnmount: subsHandler.stop,
   };
 }, PollsList);
