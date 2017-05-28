@@ -21,6 +21,10 @@ class EditPoll extends React.Component {
     this.onPollRemove = this.onPollRemove.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.onUnmount();
+  }
+
   onPollRemove() {
     removePoll.call({ _id: this.props.pollId }, handleResult(() => {
       this.context.router.push('my-polls');
@@ -55,7 +59,7 @@ class EditPoll extends React.Component {
               <EditQuestionsList pollId={pollId} questions={questions} />
             </Col>
 
-            <LinkButton fixed floating primary>remove_red_eye</LinkButton>
+            <LinkButton fixed floating primary to={`/poll/${pollId}`}>remove_red_eye</LinkButton>
           </Row>
         )}
       </Spinner>

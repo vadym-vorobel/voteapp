@@ -55,3 +55,36 @@ Meteor.publishComposite('polls.details', function pollsDetails(pollId) {
     ],
   };
 });
+
+
+Meteor.publishComposite('polls.view', function pollsDetails(pollId) {
+  check(pollId, String);
+
+  const { userId } = this;
+
+  if (!userId) {
+    return this.ready();
+  }
+
+  return {
+    find() {
+      return Polls.find({ _id: pollId, isPublic: true });
+    },
+
+    children: [
+      {
+        find(poll) {
+          return Questions.find({ pollId: poll._id, isOpen: true });
+        },
+
+        children: [
+          {
+            find(question) {
+              return Answers.find({ questionId: question._id });
+            },
+          },
+        ],
+      },
+    ],
+  };
+});
