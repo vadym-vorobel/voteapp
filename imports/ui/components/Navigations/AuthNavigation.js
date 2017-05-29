@@ -4,19 +4,20 @@ import { Meteor } from 'meteor/meteor';
 
 import Toolbar from 'react-md/lib/Toolbars';
 
-import NavButton from './NavButton';
+import LinkButton from '../LinkButton';
 
 
 const navButton = (
-  <NavButton icon iconName="thumbs_up_down" to="/my-polls" />
+  <LinkButton icon to="/my-polls">thumbs_up_down</LinkButton>
 );
 
 
 const logout = () => Meteor.logout();
 
 const actions = [
-  <NavButton flat to="/my-polls" label="My Polls" />,
-  <NavButton flat label="Logout" onClick={logout} />,
+  <LinkButton flat to="/my-polls" label="My Polls" />,
+  <LinkButton flat to="/public-polls" label="Public Polls" />,
+  <LinkButton flat label="Logout" onClick={logout} />,
 ];
 
 

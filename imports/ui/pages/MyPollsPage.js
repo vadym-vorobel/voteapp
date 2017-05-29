@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MyPollsContainer from '../components/MyPolls/MyPollsContainer';
+import MyPollsContainer from '../components/MyPollsContainer';
 
 
 const MyPollsPage = () => (

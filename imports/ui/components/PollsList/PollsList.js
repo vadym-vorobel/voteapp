@@ -1,17 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Meteor } from 'meteor/meteor';
-
-import { createContainer } from 'meteor/react-meteor-data';
-
 import { Row } from 'react-flexbox-grid';
 
 import { handleResult } from '../../../utils/client-utils';
-import { Polls } from '../../../api/polls/polls';
 import { updatePoll } from '../../../api/polls/methods';
 
-import PollItem from '../PollItem';
+import PollItem from './PollItem';
 import Spinner from '../Spinner';
 
 
@@ -57,12 +52,4 @@ MyPolls.propTypes = {
 };
 
 
-export default createContainer(() => {
-  const subsHandler = Meteor.subscribe('polls.currentUser');
-
-  return {
-    loading: !subsHandler.ready(),
-    polls: Polls.find().fetch(),
-    onUnmount: subsHandler.stop,
-  };
-}, MyPolls);
+export default MyPolls;

@@ -5,7 +5,9 @@ An example MeteorJS project for TernopilJS school.
 ### How to install
 
 - `git clone https://github.com/alonoslav/voteapp-clone`
-- `meteor npm install && meteor run`
+- open `settings.json` file and update `superUser` field
+- for the first time run `meteor npm install`
+- `npm start` - to start your project
 
 
 ### Tools
