@@ -68,7 +68,13 @@ Meteor.publishComposite('polls.view', function pollsDetails(pollId) {
 
   return {
     find() {
-      return Polls.find({ _id: pollId, isPublic: true });
+      return Polls.find({
+        _id: pollId,
+        $or: [
+          { isPublic: true },
+          { createdBy: this.userId },
+        ],
+      });
     },
 
     children: [

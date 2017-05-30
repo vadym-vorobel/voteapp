@@ -35,7 +35,7 @@ const EditQuestionItem = ({ question, answers, onQuestionUpdate, onQuestionRemov
           <Checkbox
             id={isActiveCheckboxId}
             name={isActiveCheckboxId}
-            label="Enabled"
+            label="Enable for voting"
             checked={isEnabled}
             checkedIconChildren="check"
             onChange={onQuestionUpdate('isEnabled')}
