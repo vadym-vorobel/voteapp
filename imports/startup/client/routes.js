@@ -15,6 +15,7 @@ import NotFoundPage from '../../ui/pages/NotFoundPage';
 import MyPollsPage from '../../ui/pages/MyPollsPage';
 import PublicPollsPage from '../../ui/pages/PublicPollsPage';
 import EditPollPage from '../../ui/pages/EditPollPage';
+import VotingPreviewPage from '../../ui/pages/VotingPreviewPage';
 import PollPage from '../../ui/pages/PollPage';
 
 
@@ -34,6 +35,7 @@ export const renderRoutes = () => (
       <Route path="public-polls" component={PublicPollsPage} />
 
       <Route path="edit-poll/:_id" component={EditPollPage} />
+      <Route path="preview/:_id" component={VotingPreviewPage} />
       <Route path="poll/:_id" component={PollPage} />
 
       <Redirect path="*" to="not-found" />
