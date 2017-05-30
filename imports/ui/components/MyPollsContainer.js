@@ -7,7 +7,7 @@ import { Polls } from '../../api/polls/polls';
 import PollsList from './PollsList/PollsList';
 
 
-export default createContainer((props) => {
+export default createContainer(() => {
   const subsHandler = Meteor.subscribe('polls.currentUser');
 
   return {
