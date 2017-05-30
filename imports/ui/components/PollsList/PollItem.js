@@ -36,7 +36,7 @@ const PollItem = ({ poll, onPublicityToggle }) => {
         />
 
         <CardActions>
-          <LinkButton flat label="Open" to={`/poll/${poll._id}`}/>
+          <LinkButton flat label="Open" to={`/poll/${poll._id}`} />
 
           {canEditPoll && (
             <LinkButton
