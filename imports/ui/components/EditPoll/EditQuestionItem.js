@@ -71,6 +71,11 @@ const EditQuestionItem = ({ question, answers, onQuestionUpdate, onQuestionRemov
 };
 
 
+EditQuestionItem.defaultProps = {
+  answers: [],
+};
+
+
 EditQuestionItem.propTypes = {
   question: PropTypes.object.isRequired,
   onQuestionUpdate: PropTypes.func.isRequired,
