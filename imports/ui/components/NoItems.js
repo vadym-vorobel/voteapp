@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 const NoItems = ({ noItemsText }) => (
-  <h3 className="md-block-centered">{noItemsText}</h3>
+  <h3 className="md-block-centered md-text-center">{noItemsText}</h3>
 );
 
 

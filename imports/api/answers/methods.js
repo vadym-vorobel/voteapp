@@ -69,3 +69,31 @@ export const removeAnswer = new ValidatedMethod({
     return Answers.remove({ _id });
   },
 });
+
+
+export const chooseAnswer = new ValidatedMethod({
+  name: 'Answers.choose',
+  validate: new SimpleSchema({
+    _id: { type: String },
+  }).validator(),
+
+  run({ _id }) {
+    const { userId } = this;
+
+    if (!userId) {
+      throw new Meteor.Error('You can\'t remove this answer');
+    }
+
+    const answer = Answers.findOne({ _id });
+
+    // remove all votes from other answers
+    Answers.update({
+      _id: { $ne: _id },
+      questionId: answer.questionId,
+    }, {
+      $pull: { votedBy: userId },
+    });
+
+    return Answers.update({ _id }, { $addToSet: { votedBy: userId } });
+  },
+});

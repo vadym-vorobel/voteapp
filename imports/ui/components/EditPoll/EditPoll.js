@@ -55,7 +55,7 @@ class EditPoll extends React.Component {
               <EditQuestionsList pollId={pollId} questions={questions} />
             </Col>
 
-            <LinkButton fixed floating primary>remove_red_eye</LinkButton>
+            <LinkButton fixed floating primary to={`/vote/${pollId}`}>remove_red_eye</LinkButton>
           </Row>
         )}
       </Spinner>
