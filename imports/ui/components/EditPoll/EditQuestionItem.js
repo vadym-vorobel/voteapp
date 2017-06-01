@@ -75,13 +75,10 @@ EditQuestionItem.propTypes = {
   question: PropTypes.object.isRequired,
   onQuestionUpdate: PropTypes.func.isRequired,
   onQuestionRemove: PropTypes.func.isRequired,
-
-  answers: PropTypes.array,
+  answers: PropTypes.array.isRequired,
 };
 
 
-export default createContainer(({ question }) => {
-  return {
-    answers: Answers.find({ questionId: question._id }).fetch(),
-  };
-}, EditQuestionItem);
+export default createContainer(({ question }) => ({
+  answers: Answers.find({ questionId: question._id }).fetch(),
+}), EditQuestionItem);
