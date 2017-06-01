@@ -87,12 +87,11 @@ export const chooseAnswer = new ValidatedMethod({
     const answer = Answers.findOne({ _id });
 
     // remove all votes from other answers
-    Answers.update({
-      _id: { $ne: _id },
-      questionId: answer.questionId,
-    }, {
-      $pull: { votedBy: userId },
-    });
+    Answers.update(
+      { questionId: answer.questionId },
+      { $pull: { votedBy: userId } },
+      { multi: true },
+    );
 
     return Answers.update({ _id }, { $addToSet: { votedBy: userId } });
   },

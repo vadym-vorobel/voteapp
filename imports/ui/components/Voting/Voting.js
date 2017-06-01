@@ -6,9 +6,6 @@ import Col from 'react-flexbox-grid/lib/components/Col';
 
 import NoItems from '../NoItems';
 
-import { updatePoll } from '../../../api/polls/methods';
-import { handleResult } from '../../../utils/client-utils';
-
 import Spinner from '../Spinner';
 import Question from './Question';
 
