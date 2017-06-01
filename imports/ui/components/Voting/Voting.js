@@ -24,7 +24,13 @@ class Voting extends React.Component {
       return <Spinner />;
     }
 
-    if (questions.length === 0) {
+    if (!poll.isPublic) {
+      return <NoItems noItemsText="This poll is not public" />;
+    }
+
+    const openedQuestions = questions.filter(question => question.isOpen);
+
+    if (openedQuestions.length === 0) {
       return <NoItems noItemsText="No questions to display" />;
     }
 
@@ -33,7 +39,7 @@ class Voting extends React.Component {
         <Col xs={12} md={6} sm={8} mdOffset={3} smOffset={2}>
           <h1 className="md-text-center">{poll.title}</h1>
 
-          {questions.map(question => <Question key={question._id} question={question} />)}
+          {openedQuestions.map(question => <Question key={question._id} question={question} />)}
         </Col>
       </Row>
     );

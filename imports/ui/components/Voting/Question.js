@@ -4,24 +4,13 @@ import ReactHighcharts from 'react-highcharts';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
+import { answersColors } from './colors';
+
 import { Answers } from '../../../api/answers/answers';
 import { chooseAnswer } from '../../../api/answers/methods';
 import { handleResult } from '../../../utils/client-utils';
 
 import Answer from './Answer';
-
-
-const answersColors = [
-  '#50B432',
-  '#ED561B',
-  '#058DC7',
-  '#DDDF00',
-  '#24CBE5',
-  '#64E572',
-  '#FF9655',
-  '#FFF263',
-  '#6AF9C4',
-];
 
 
 const onAnswerChoose = answerId => () => {
@@ -73,9 +62,7 @@ const Question = ({ question, answers }) => (
   <div className="questions-container">
     <h2 className="md-text-center">{question.title}</h2>
 
-    <div className="chart-area">
-      <ReactHighcharts config={getChartConfig(answers)} />
-    </div>
+    {question.showResults && <ReactHighcharts config={getChartConfig(answers)} />}
 
     {answers.map((answer, index) => (
       <Answer
@@ -83,15 +70,20 @@ const Question = ({ question, answers }) => (
         answer={answer}
         onAnswerChoose={onAnswerChoose(answer._id)}
         color={getAnswerColor(index)}
+        enabled={question.isEnabled}
       />
     ))}
   </div>
 );
 
+Question.defaultProps = {
+  answers: [],
+};
+
 
 Question.propTypes = {
   question: PropTypes.object.isRequired,
-  answers: PropTypes.array.isRequired,
+  answers: PropTypes.array,
 };
 
 

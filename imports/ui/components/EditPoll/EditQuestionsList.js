@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 import Col from 'react-flexbox-grid/lib/components/Col';
 import Button from 'react-md/lib/Buttons/Button';
 
-import { createQuestion, updateQuestion, removeQuestion } from '../../../api/questions/methods';
+import {
+  createQuestion,
+  updateQuestion,
+  removeQuestion,
+  resetQuestion,
+} from '../../../api/questions/methods';
+
 import { handleResult } from '../../../utils/client-utils';
 
 import NoItems from '../NoItems';
@@ -32,6 +38,12 @@ class EditQuestionsList extends React.Component {
     };
   }
 
+  onQuestionReset(questionId) {
+    return () => {
+      resetQuestion.call({ _id: questionId }, handleResult());
+    };
+  }
+
   addQuestion() {
     const { pollId } = this.props;
 
@@ -49,6 +61,7 @@ class EditQuestionsList extends React.Component {
           question={question}
           onQuestionUpdate={this.onQuestionUpdate(_id)}
           onQuestionRemove={this.onQuestionRemove(_id)}
+          onQuestionReset={this.onQuestionReset(_id)}
         />
       </div>
     );

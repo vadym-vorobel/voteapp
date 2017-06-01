@@ -76,3 +76,21 @@ export const removeQuestion = new ValidatedMethod({
     return Questions.remove({ _id });
   },
 });
+
+
+export const resetQuestion = new ValidatedMethod({
+  name: 'Questions.reset',
+  validate: new SimpleSchema({
+    _id: { type: String },
+  }).validator(),
+
+  run({ _id }) {
+    const question = Questions.findOne({ _id, createdBy: this.userId });
+
+    if (!question) {
+      throw new Meteor.Error('You can\'t remove this question');
+    }
+
+    return Answers.update({ questionId: _id }, { $set: { votedBy: [] } }, { multi: true });
+  },
+});
