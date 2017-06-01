@@ -9,7 +9,6 @@ import { Col } from 'react-flexbox-grid';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardActions from 'react-md/lib/Cards/CardActions';
-import Button from 'react-md/lib/Buttons/Button';
 import Checkbox from 'react-md/lib/SelectionControls/Checkbox';
 
 import LinkButton from '../LinkButton';
@@ -36,7 +35,11 @@ const PollItem = ({ poll, onPublicityToggle }) => {
         />
 
         <CardActions>
-          <Button flat label="Open" />
+          <LinkButton
+            flat
+            to={`vote/${poll._id}`}
+            label="Open"
+          />
 
           {canEditPoll && (
             <LinkButton
