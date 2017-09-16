@@ -76,12 +76,7 @@ class EditQuestionsList extends React.Component {
 
         {questions.length > 0 && questions.map(this.renderQuestionItems)}
 
-        <Button
-          raised
-          primary
-          label="Add"
-          onClick={this.addQuestion}
-        />
+        <Button raised primary onClick={this.addQuestion}>Add</Button>
       </Col>
     );
   }

@@ -49,7 +49,7 @@ class SignInPage extends React.Component {
 
               <TextField required id="password" label="Password" type="password" />
 
-              <Button raised primary type="submit" label="Submit" />
+              <Button raised primary type="submit">Submit</Button>
             </FocusContainer>
           </Col>
         </Row>

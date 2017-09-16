@@ -13,12 +13,13 @@ const Answer = ({ answer, onAnswerChoose, color, enabled }) => (
   <Button
     raised
     primary
-    label={`${answer.title} (${answer.votedBy.length})`}
     className="answer-button"
     onClick={onAnswerChoose}
     style={{ backgroundColor: getButtonColor(color, enabled) }}
     disabled={!enabled}
-  />
+  >
+    {`${answer.title} (${answer.votedBy.length})`}
+  </Button>
 );
 
 

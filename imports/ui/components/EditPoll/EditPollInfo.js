@@ -29,7 +29,6 @@ const EditPollInfo = ({ poll, onPollUpdate, onPollRemove }) => (
       name={getCheckboxId(poll)}
       label="Public"
       checked={poll.isPublic}
-      checkedIconChildren="check"
       onChange={onPollUpdate('isPublic')}
     />
   </Col>

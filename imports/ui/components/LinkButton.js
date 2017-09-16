@@ -5,7 +5,7 @@ import Link from 'react-router/lib/Link';
 import Button from 'react-md/lib/Buttons/Button';
 
 
-const LinkButton = ({ to, children, ...buttonProps }) => (
+const LinkButton = ({ to, children, label, ...buttonProps }) => (
   <Link to={to} style={{ color: '#fff' }}>
     {children && (
       <Button
@@ -15,7 +15,7 @@ const LinkButton = ({ to, children, ...buttonProps }) => (
       </Button>
     )}
 
-    {!children && <Button {...buttonProps} />}
+    {!children && <Button {...buttonProps}>{label}</Button>}
   </Link>
 );
 

@@ -20,6 +20,7 @@ const EditQuestionItem =
 
     const isActiveCheckboxId = `is-active-${_id}`;
     const showResultsCheckboxId = `show-results-${_id}`;
+    const isOpenCheckboxId = `is-open-${_id}`;
 
     return (
       <div>
@@ -39,7 +40,6 @@ const EditQuestionItem =
               name={isActiveCheckboxId}
               label="Enabled"
               checked={isEnabled}
-              checkedIconChildren="check"
               onChange={onQuestionUpdate('isEnabled')}
             />
           </Col>
@@ -50,19 +50,13 @@ const EditQuestionItem =
               name={showResultsCheckboxId}
               label="Show Results"
               checked={showResults}
-              checkedIconChildren="check"
               onChange={onQuestionUpdate('showResults')}
             />
           </Col>
 
           <Col xs={4}>
             <div className="m-t-5 md-block-centered">
-              <Button
-                flat
-                primary
-                label="Reset voting"
-                onClick={onQuestionReset}
-              />
+              <Button flat primary onClick={onQuestionReset}>Reset voting</Button>
             </div>
           </Col>
         </Row>
@@ -73,8 +67,8 @@ const EditQuestionItem =
         />
 
         <Switch
-          id={showResultsCheckboxId}
-          name={showResultsCheckboxId}
+          id={isOpenCheckboxId}
+          name={isOpenCheckboxId}
           label="on/off"
           checked={isOpen}
           onChange={onQuestionUpdate('isOpen')}

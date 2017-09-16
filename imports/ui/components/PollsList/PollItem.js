@@ -55,7 +55,6 @@ const PollItem = ({ poll, onPublicityToggle }) => {
               name={getCheckboxId(poll)}
               label="public"
               checked={poll.isPublic}
-              checkedIconChildren="check"
               onChange={onPublicityToggleHandler}
             />
           )}
