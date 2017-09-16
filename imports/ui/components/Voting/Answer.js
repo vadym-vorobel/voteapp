@@ -9,14 +9,14 @@ import { disabledColor } from './colors';
 const getButtonColor = (color, enabled) => (enabled ? color : disabledColor);
 
 
-const Answer = ({ answer, onAnswerChoose, color, enabled }) => (
+const Answer = ({ answer, onAnswerChoose, color, enabled, votedAlready }) => (
   <Button
     raised
     primary
     className="answer-button"
     onClick={onAnswerChoose}
     style={{ backgroundColor: getButtonColor(color, enabled) }}
-    disabled={!enabled}
+    disabled={!enabled || votedAlready}
   >
     {`${answer.title} (${answer.votedBy.length})`}
   </Button>
@@ -28,6 +28,7 @@ Answer.propTypes = {
   onAnswerChoose: PropTypes.func.isRequired,
   color: PropTypes.string.isRequired,
   enabled: PropTypes.bool.isRequired,
+  votedAlready: PropTypes.bool.isRequired,
 };
 
 

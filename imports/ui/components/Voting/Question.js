@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactHighcharts from 'react-highcharts';
 
+import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { answersColors } from './colors';
@@ -58,6 +59,10 @@ const getChartConfig = (answers) => ({
 });
 
 
+const voteAlready = (answers) =>
+  answers.some(({ votedBy = [] }) => votedBy.indexOf(Meteor.userId()) > -1);
+
+
 const Question = ({ question, answers }) => (
   <div className="questions-container">
     <h2 className="md-text-center">{question.title}</h2>
@@ -71,6 +76,7 @@ const Question = ({ question, answers }) => (
         onAnswerChoose={onAnswerChoose(answer._id)}
         color={getAnswerColor(index)}
         enabled={question.isEnabled}
+        votedAlready={voteAlready(answers)}
       />
     ))}
   </div>

@@ -49,6 +49,14 @@ Meteor.publishComposite('polls.details', function pollsDetails(pollId) {
             find(question) {
               return Answers.find({ questionId: question._id });
             },
+
+            children: [
+              {
+                find({ votedBy = [] }) {
+                  return Meteor.users.find({ _id: { $in: votedBy } });
+                },
+              },
+            ],
           },
         ],
       },
