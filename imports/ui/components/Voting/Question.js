@@ -59,8 +59,8 @@ const getChartConfig = (answers) => ({
 });
 
 
-const voteAlready = (answers) =>
-  answers.some(({ votedBy = [] }) => votedBy.indexOf(Meteor.userId()) > -1);
+// const voteAlready = (answers) =>
+//   answers.some(({ votedBy = [] }) => votedBy.indexOf(Meteor.userId()) > -1);
 
 
 const Question = ({ question, answers }) => (
@@ -76,7 +76,7 @@ const Question = ({ question, answers }) => (
         onAnswerChoose={onAnswerChoose(answer._id)}
         color={getAnswerColor(index)}
         enabled={question.isEnabled}
-        votedAlready={voteAlready(answers)}
+        votedAlready={false}
       />
     ))}
   </div>
