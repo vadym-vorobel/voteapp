@@ -80,7 +80,7 @@ class EditQuestionItem extends React.Component {
 
           <Col xs={3}>
             <div className="m-t-5 md-block-centered">
-              <a href={`/chart/${_id}`} target="__blank">Voting chart</a>
+              <Button flat primary href={`/chart/${_id}`}>Voting chart</Button>
             </div>
           </Col>
 

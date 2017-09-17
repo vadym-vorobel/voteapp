@@ -13,8 +13,6 @@ const getChartConfig = (answers) => ({
   chart: {
     backgroundColor: 'rgba(255, 255, 255, 0.0)',
     type: 'pie',
-    height: 200,
-    width: 200,
   },
 
   colors: answersColors,
