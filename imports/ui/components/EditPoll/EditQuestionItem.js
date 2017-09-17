@@ -58,7 +58,7 @@ class EditQuestionItem extends React.Component {
         />
 
         <Row>
-          <Col xs={4}>
+          <Col xs={3}>
             <Checkbox
               id={isActiveCheckboxId}
               name={isActiveCheckboxId}
@@ -68,7 +68,7 @@ class EditQuestionItem extends React.Component {
             />
           </Col>
 
-          <Col xs={4}>
+          <Col xs={3}>
             <Checkbox
               id={showResultsCheckboxId}
               name={showResultsCheckboxId}
@@ -78,7 +78,13 @@ class EditQuestionItem extends React.Component {
             />
           </Col>
 
-          <Col xs={4}>
+          <Col xs={3}>
+            <div className="m-t-5 md-block-centered">
+              <a href={`/chart/${_id}`} target="__blank">Voting chart</a>
+            </div>
+          </Col>
+
+          <Col xs={3}>
             <div className="m-t-5 md-block-centered">
               <Button flat primary onClick={this.onModalOpen}>Voting result</Button>
             </div>

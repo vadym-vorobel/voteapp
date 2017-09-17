@@ -16,6 +16,7 @@ import MyPollsPage from '../../ui/pages/MyPollsPage';
 import PublicPollsPage from '../../ui/pages/PublicPollsPage';
 import EditPollPage from '../../ui/pages/EditPollPage';
 import VotingPage from '../../ui/pages/VotingPage';
+import QuestionChart from '../../ui/pages/QuestionChart';
 
 
 const publicRoutes = ['/', '/sign-in', 'sign-up'];
@@ -24,6 +25,8 @@ const commonRoutes = ['/not-found'];
 
 export const renderRoutes = () => (
   <Router history={browserHistory}>
+    <Route path="chart/:questionId" component={QuestionChart} />
+
     <Route path="/" component={AppLayout} publicRoutes={publicRoutes} commonRoutes={commonRoutes}>
       <IndexRoute component={HomePage} />
       <Route path="sign-in" component={SignInPage} />
