@@ -55,7 +55,7 @@ class EditAnswersList extends React.Component {
 
         {answers.length > 0 && answers.map(this.renderAnswerItem)}
 
-        <Button raised primary onClick={this.addAnswer}>add</Button>
+        <Button primary raised iconChildren="add" onClick={this.addAnswer}>Add answer</Button>
       </div>
     );
   }

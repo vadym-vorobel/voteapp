@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Col from 'react-flexbox-grid/lib/components/Col';
 import Button from 'react-md/lib/Buttons/Button';
+import { ExpansionList } from 'react-md';
 
 import {
   createQuestion,
@@ -54,16 +55,14 @@ class EditQuestionsList extends React.Component {
     const { _id } = question;
 
     return (
-      <div key={_id} className="m-t-25">
-        <h3 className="m-b-0">Question {index + 1}</h3>
-
-        <EditQuestionItem
-          question={question}
-          onQuestionUpdate={this.onQuestionUpdate(_id)}
-          onQuestionRemove={this.onQuestionRemove(_id)}
-          onQuestionReset={this.onQuestionReset(_id)}
-        />
-      </div>
+      <EditQuestionItem
+        key={_id}
+        isExpanded={index === 0}
+        question={question}
+        onQuestionUpdate={this.onQuestionUpdate(_id)}
+        onQuestionRemove={this.onQuestionRemove(_id)}
+        onQuestionReset={this.onQuestionReset(_id)}
+      />
     );
   }
 
@@ -74,9 +73,13 @@ class EditQuestionsList extends React.Component {
       <Col xs={12}>
         {questions.length === 0 && <NoItems noItemsText="No questions" />}
 
-        {questions.length > 0 && questions.map(this.renderQuestionItems)}
+        <ExpansionList>
+          {questions.length > 0 && questions.map(this.renderQuestionItems)}
+        </ExpansionList>
 
-        <Button raised primary onClick={this.addQuestion}>Add</Button>
+        <div className="m-t-10">
+          <Button raised primary onClick={this.addQuestion}>Add question</Button>
+        </div>
       </Col>
     );
   }

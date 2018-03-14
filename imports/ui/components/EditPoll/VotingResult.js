@@ -38,7 +38,7 @@ const VotingResult = ({ answers }) => {
       <Tabs tabId="simple-tab">
         {answers.map(({ _id, title, votedBy = [] }) => (
 
-          <Tab key={`result-for-answer-${_id}`} label={title}>
+          <Tab key={`result-for-answer-${_id}`} label={`${title} (${votedBy.length})`}>
             <List ordered>
               {getVotedBy(votedBy)}
             </List>

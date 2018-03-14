@@ -51,7 +51,9 @@ class QuestionChart extends React.Component {
 
   render() {
     return (
-      <ReactHighcharts config={getChartConfig(this.props.answers)} />
+      <div className="chart-container">
+        <ReactHighcharts config={getChartConfig(this.props.answers)} />
+      </div>
     );
   }
 }

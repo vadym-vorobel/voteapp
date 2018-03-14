@@ -1,8 +1,10 @@
 import React from 'react';
 
+import Link from 'react-router/lib/Link';
+
 import { Meteor } from 'meteor/meteor';
 
-import Toolbar from 'react-md/lib/Toolbars';
+import { Toolbar, MenuButton, ListItem } from 'react-md';
 
 import LinkButton from '../LinkButton';
 
@@ -15,10 +17,34 @@ const navButton = (
 const logout = () => Meteor.logout();
 
 const actions = [
-  <LinkButton flat to="/my-polls" label="My Polls" />,
-  <LinkButton flat to="/public-polls" label="Public Polls" />,
-  <LinkButton flat label="Logout" onClick={logout} />,
+  (
+    <Link key="my-polls-action" to="/my-polls">
+      <ListItem primaryText="My Polls" />
+    </Link>
+  ),
+
+  (
+    <Link key="public-polls-action" to="/public-polls">
+      <ListItem primaryText="Public Polls" />
+    </Link>
+  ),
+
+  (
+    <ListItem key="logout-action" primaryText="Logout" onClick={logout} />
+  ),
 ];
+
+
+
+const KebabMenu = () => (
+  <MenuButton
+    icon
+    id="auth-menu"
+    menuItems={actions}
+  >
+    more_vert
+  </MenuButton>
+);
 
 
 const AuthNavigation = () => (
@@ -26,7 +52,7 @@ const AuthNavigation = () => (
     colored
     title="Vote App"
     nav={navButton}
-    actions={actions}
+    actions={<KebabMenu />}
   />
 );
 

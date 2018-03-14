@@ -7,6 +7,7 @@ import Button from 'react-md/lib/Buttons/Button';
 import { Checkbox, Switch } from 'react-md/lib/SelectionControls';
 import { DialogContainer } from 'react-md/lib/Dialogs';
 import { Toolbar } from 'react-md/lib/Toolbars';
+import { ExpansionPanel } from 'react-md';
 
 import { createContainer } from 'meteor/react-meteor-data';
 
@@ -15,6 +16,7 @@ import { Answers } from '../../../api/answers/answers';
 import EditAnswersList from './EditAnswersList';
 import RemoveIcon from '../RemoveIcon';
 import VotingResult from './VotingResult';
+import QuestionChart from '../QuestionChart/QuestionChartContainer.js';
 
 
 class EditQuestionItem extends React.Component {
@@ -23,10 +25,13 @@ class EditQuestionItem extends React.Component {
 
     this.state = {
       dialogOpen: false,
+      chartDialogOpen: false,
     };
 
     this.onModalOpen = this.onModalOpen.bind(this);
     this.onModalHide = this.onModalHide.bind(this);
+    this.onChartModalOpen = this.onChartModalOpen.bind(this);
+    this.onChartModalHide = this.onChartModalHide.bind(this);
   }
 
   onModalOpen() {
@@ -37,8 +42,16 @@ class EditQuestionItem extends React.Component {
     this.setState({ dialogOpen: false });
   }
 
+  onChartModalOpen() {
+    this.setState({ chartDialogOpen: true });
+  }
+
+  onChartModalHide() {
+    this.setState({ chartDialogOpen: false });
+  }
+
   render() {
-    const { question, answers = [], onQuestionUpdate, onQuestionRemove } = this.props;
+    const { question, answers = [], onQuestionUpdate, onQuestionRemove, isExpanded, columnWidths } = this.props;
 
     const { _id, title, isEnabled, showResults, isOpen } = question;
 
@@ -47,7 +60,12 @@ class EditQuestionItem extends React.Component {
     const isOpenCheckboxId = `is-open-${_id}`;
 
     return (
-      <div>
+      <ExpansionPanel
+        columnWidths={columnWidths}
+        label={`${title} (${isOpen ? 'on' : 'off'})`}
+        defaultExpanded={isExpanded || !title}
+        footer={null}
+      >
         <TextField
           id={`question-${_id}-title`}
           label="Question title"
@@ -58,17 +76,28 @@ class EditQuestionItem extends React.Component {
         />
 
         <Row>
-          <Col xs={3}>
+          <Col sm={4}>
+            <Switch
+              id={isOpenCheckboxId}
+              type="switch"
+              name={isOpenCheckboxId}
+              label="on/off question"
+              checked={isOpen}
+              onChange={onQuestionUpdate('isOpen')}
+            />
+          </Col>
+
+          <Col sm={4}>
             <Checkbox
               id={isActiveCheckboxId}
               name={isActiveCheckboxId}
-              label="Enabled"
+              label="Enabled for voting"
               checked={isEnabled}
               onChange={onQuestionUpdate('isEnabled')}
             />
           </Col>
 
-          <Col xs={3}>
+          <Col sm={4}>
             <Checkbox
               id={showResultsCheckboxId}
               name={showResultsCheckboxId}
@@ -77,15 +106,36 @@ class EditQuestionItem extends React.Component {
               onChange={onQuestionUpdate('showResults')}
             />
           </Col>
+        </Row>
 
-          <Col xs={3}>
-            <div className="m-t-5 md-block-centered">
-              <Button flat primary href={`/chart/${_id}`}>Voting chart</Button>
+        <Row>
+         <Col sm={6}>
+            <div className="md-block-centered">
+              <Button flat primary onClick={this.onChartModalOpen}>Voting chart</Button>
             </div>
+
+            <DialogContainer
+              id="simple-chart-full-page-dialog"
+              visible={this.state.chartDialogOpen}
+              fullPage
+              onHide={this.onChartModalHide}
+              aria-labelledby="simple-chart-full-page-dialog-title"
+            >
+              <Toolbar
+                fixed
+                colored
+                title="Voting results"
+                titleId="simple-full-page-dialog-title"
+                nav={<Button icon onClick={this.onChartModalHide}>close</Button>}
+              />
+              <section className="md-toolbar-relative">
+                <QuestionChart questionId={_id} />
+              </section>
+            </DialogContainer>
           </Col>
 
-          <Col xs={3}>
-            <div className="m-t-5 md-block-centered">
+          <Col sm={6}>
+            <div className="md-block-centered">
               <Button flat primary onClick={this.onModalOpen}>Voting result</Button>
             </div>
 
@@ -114,15 +164,7 @@ class EditQuestionItem extends React.Component {
           questionId={_id}
           answers={answers}
         />
-
-        <Switch
-          id={isOpenCheckboxId}
-          name={isOpenCheckboxId}
-          label="on/off"
-          checked={isOpen}
-          onChange={onQuestionUpdate('isOpen')}
-        />
-      </div>
+      </ExpansionPanel>
     );
   }
 }
@@ -134,6 +176,7 @@ EditQuestionItem.propTypes = {
   onQuestionRemove: PropTypes.func.isRequired,
   onQuestionReset: PropTypes.func.isRequired,
   answers: PropTypes.array.isRequired,
+  isExpanded: PropTypes.bool.isRequired,
 };
 
 
