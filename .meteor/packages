@@ -30,3 +30,4 @@ less@2.7.11
 msavin:mongol
 reywood:publish-composite
 dynamic-import
+percolate:migrations
