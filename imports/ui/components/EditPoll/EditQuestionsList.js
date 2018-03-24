@@ -17,7 +17,6 @@ import { handleResult } from '../../../utils/client-utils';
 import NoItems from '../NoItems';
 import EditQuestionItem from './EditQuestionItem';
 
-
 class EditQuestionsList extends React.Component {
   constructor(props) {
     super(props);
@@ -28,8 +27,11 @@ class EditQuestionsList extends React.Component {
   }
 
   onQuestionUpdate(questionId) {
-    return field => (value) => {
-      updateQuestion.call({ _id: questionId, partToUpdate: { [field]: value } }, handleResult());
+    return field => value => {
+      updateQuestion.call(
+        { _id: questionId, partToUpdate: { [field]: value } },
+        handleResult()
+      );
     };
   }
 
@@ -73,23 +75,25 @@ class EditQuestionsList extends React.Component {
       <Col xs={12}>
         {questions.length === 0 && <NoItems noItemsText="No questions" />}
 
-        <ExpansionList>
-          {questions.length > 0 && questions.map(this.renderQuestionItems)}
-        </ExpansionList>
+        {questions.length > 0 && (
+          <ExpansionList>
+            {questions.map(this.renderQuestionItems)}
+          </ExpansionList>
+        )}
 
         <div className="m-t-10">
-          <Button raised primary onClick={this.addQuestion}>Add question</Button>
+          <Button raised primary onClick={this.addQuestion}>
+            Add question
+          </Button>
         </div>
       </Col>
     );
   }
 }
 
-
 EditQuestionsList.propTypes = {
   questions: PropTypes.array.isRequired,
   pollId: PropTypes.string.isRequired,
 };
-
 
 export default EditQuestionsList;
